@@ -13,10 +13,14 @@
         .gift-box {
             width: 150px;
             height: 150px;
-            background: url('https://cdn-icons-png.flaticon.com/512/2076/2076261.png') no-repeat center/cover;
+            background: url('https://cdn-icons-png.flaticon.com/512/2339/2339988.png') no-repeat center/cover;
             display: inline-block;
             cursor: pointer;
             margin-top: 50px;
+            transition: transform 0.3s ease;
+        }
+        .gift-box:hover {
+            transform: scale(1.1);
         }
         .hidden-content {
             display: none;
@@ -26,22 +30,47 @@
             display: inline-block;
             width: 100px;
             height: 100px;
-            background: url('https://cdn-icons-png.flaticon.com/512/1046/1046857.png') no-repeat center/cover;
             margin: 10px;
             cursor: pointer;
+            transition: transform 0.3s ease;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/cover;
+        }
+        .packet:hover {
+            transform: scale(1.1);
+        }
+        .packet-container {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+        .packet-label {
+            display: block;
+            font-size: 18px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Für Mia ❤️</h1>
+    <h1>Valentinstagsgeschenk für Mia ❤️</h1>
     <p>Klicke auf die Geschenkbox für eine Überraschung!</p>
     <div class="gift-box" onclick="openBox()"></div>
     
     <div id="content" class="hidden-content">
-        <h2>Wähle ein Päckchen 🎁</h2>
-        <div class="packet" onclick="showMessage('Ich liebe dich und wünsche dir eine wunderschöne Reise! ❤️')"></div>
-        <div class="packet" onclick="showMessage('Hier ist eine kleine Challenge für dich: Mach ein Foto mit dem schönsten Ort, den du auf der Reise siehst! 📸')"></div>
-        <div class="packet" onclick="showMessage('Hör dir diese Sprachnachricht an: [Hier könnte dein Audio-Link sein] 🎶')"></div>
+        <h2>Wähle eines der Herzen aus für ein kleines Geschenk 🎁</h2>
+        <div class="packet-container"><div class="packet" onclick="window.location.href='liebesbrief.html';"></div><span class="packet-label">1</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Eine süße Sprachnachricht wartet auf dich 🎙️')"></div><span class="packet-label">2</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Eine Fotogalerie mit unseren schönsten Momenten 📸')"></div><span class="packet-label">3</span></div>
+        <div class="packet-container"><div class="packet" onclick="window.location.href='https://open.spotify.com/playlist/YOUR_PLAYLIST_LINK';"></div><span class="packet-label">4</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Ein besonderes Video nur für dich 🎥')"></div><span class="packet-label">5</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('14 Gründe, warum ich dich liebe ❤️')"></div><span class="packet-label">6</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Ein Gutschein für ein virtuelles Date mit mir 🍽️')"></div><span class="packet-label">7</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Spiele ein Minispiel: Tic-Tac-Toe oder Glücksrad 🎮')"></div><span class="packet-label">8</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Unsere Sammlung der lustigsten GIFs 😂')"></div><span class="packet-label">9</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Ein Insider-Witz nur für uns! 🤭')"></div><span class="packet-label">10</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Teste dein Wissen mit einem Quiz über uns! ❓')"></div><span class="packet-label">11</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Eine Zufallsüberraschung! 🎁')"></div><span class="packet-label">12</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Unsere Bucket List für die Zukunft 📝')"></div><span class="packet-label">13</span></div>
+        <div class="packet-container"><div class="packet" onclick="showMessage('Eine geheime Nachricht, die du erst später öffnen darfst! 🔒')"></div><span class="packet-label">14</span></div>
     </div>
 
     <script>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Fotogalerie 📸</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+            padding: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+        }
+        .slide {
+            display: none;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .dots {
+            text-align: center;
+            padding: 10px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .active {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📸 Unsere Fotogalerie 📸</h1>
+
+    <div class="slideshow-container">
+        <div class="slide"><img src="bilder/Foto1.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto2.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto3.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto4.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto5.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto6.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto7.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto8.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto9.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto10.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto11.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto12.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto13.jpeg"></div>
+        <div class="slide"><img src="bilder/Foto14.jpeg"></div>
+
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </div>
+
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+        <span class="dot" onclick="currentSlide(11)"></span>
+        <span class="dot" onclick="currentSlide(12)"></span>
+        <span class="dot" onclick="currentSlide(13)"></span>
+        <span class="dot" onclick="currentSlide(14)"></span>
+    </div>
+
+    <a href="index.html">
+        <button style="margin-top: 20px;">Zurück</button>
+    </a>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].classList.add("active");
+            setTimeout(showSlides, 3000); // Automatischer Wechsel nach 3 Sekunden
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            if (slideIndex < 1) { slideIndex = document.getElementsByClassName("slide").length; }
+            if (slideIndex > document.getElementsByClassName("slide").length) { slideIndex = 1; }
+            showSlides();
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides();
+        }
+    </script>
+
+</body>
+</html>

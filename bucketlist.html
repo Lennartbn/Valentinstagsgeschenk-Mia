@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Bucket List 💕</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .bucket-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bucket-list li {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff8dc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #ff4c4c;
+        }
+        .delete-btn {
+            background: #d9534f;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .delete-btn:hover {
+            background: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 Unsere Bucket List 🌟</h1>
+    <div class="container">
+        <ul class="bucket-list" id="bucketList">
+            <li>1️⃣ Ein spontaner Wochenendtrip in eine Überraschungsstadt ✈️✨</li>
+            <li>2️⃣ Nachts nackt baden in einem See 🌊🤫</li>
+            <li>3️⃣ Ein Mystery-Dinner besuchen 🎭🔍</li>
+            <li>4️⃣ Einen Escape-Room für Paare ausprobieren 😱🔑</li>
+            <li>5️⃣ Sterne auf einem Berg oder am Meer beobachten & Wein trinken 🍷🌌</li>
+            <li>6️⃣ Zusammen Zelten gehen 🏕️🌠</li>
+            <li>7️⃣ Zusammen an einem Tanzkurs teilnehmen 💃🕺</li>
+            <li>8️⃣ Ein „Kein-Handy-Date“ machen – nur Fokus auf uns beide 📵💕</li>
+            <li>9️⃣ Ein Vision-Board mit unseren gemeinsamen Zielen basteln 🎯📝</li>
+            <li>🔟 Eine Flaschenpost schreiben & ins Wasser werfen - mal gucken was passiert 🏝️📜</li>
+            <li>1️⃣1️⃣ Zusammen nach Thailand reisen 🇹🇭</li>
+        </ul>
+        
+        <div class="input-container">
+            <h3>✨ Ergänze unsere Bucket List ✨</h3>
+            <input type="text" id="newItem" placeholder="Was sollen wir noch erleben?">
+            <button onclick="addItem()">Hinzufügen</button>
+        </div>
+    </div>
+
+    <a href="index.html">
+        <button style="margin-top: 20px;">Zurück</button>
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadItems();
+        });
+
+        function addItem() {
+            let newItem = document.getElementById("newItem").value;
+            if (newItem.trim() !== "") {
+                let list = document.getElementById("bucketList");
+                let li = document.createElement("li");
+                li.textContent = newItem;
+
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "✖";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = function () {
+                    list.removeChild(li);
+                    removeItem(newItem);
+                };
+
+                li.appendChild(deleteBtn);
+                list.appendChild(li);
+
+                saveItem(newItem);
+                document.getElementById("newItem").value = "";
+            }
+        }
+
+        function saveItem(item) {
+            let bucketList = JSON.parse(localStorage.getItem("bucketList")) || [];
+            bucketList.push(item);
+            localStorage.setItem("bucketList", JSON.stringify(bucketList));
+        }
+
+        function loadItems() {
+            let bucketList = JSON.parse(localStorage.getItem("bucketList")) || [];
+            let list = document.getElementById("bucketList");
+            bucketList.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = item;
+
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "✖";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = function () {
+                    list.removeChild(li);
+                    removeItem(item);
+                };
+
+                li.appendChild(deleteBtn);
+                list.appendChild(li);
+            });
+        }
+
+        function removeItem(item) {
+            let bucketList = JSON.parse(localStorage.getItem("bucketList")) || [];
+            let updatedList = bucketList.filter(i => i !== item);
+            localStorage.setItem("bucketList", JSON.stringify(updatedList));
+        }
+    </script>
+</body>
+</html>

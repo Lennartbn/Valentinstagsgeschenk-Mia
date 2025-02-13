@@ -50,7 +50,6 @@
         <h2>Was möchtest du tun? 💕</h2>
         <a href="#" class="btn" onclick="showSection('dinner')">🍽️ Gemeinsames Dinner</a>
         <a href="#" class="btn" onclick="showSection('movie')">🎬 Filmabend</a>
-        <a href="#" class="btn" onclick="showSection('music')">🎶 Gemeinsame Musik</a>
         
         <div id="dinner" class="hidden">
             <h3>🍷 Virtuelles Dinner</h3>
@@ -64,12 +63,6 @@
             <img src="https://giveaways4mom.com/wp-content/uploads/2022/09/Netflix-and-Chill-Essentials-For-Couples-1.png" class="romantic-img" alt="Filmabend">
         </div>
 
-        <div id="music" class="hidden">
-            <h3>🎶 Gemeinsame Musik</h3>
-            <p>Hör dir unsere persönliche Date-Night-Playlist an. Hab ich erstellt: <a href="https://open.spotify.com/playlist/YOUR_PLAYLIST_LINK" target="_blank">Spotify 🎧</a></p>
-            <img src="https://static.vecteezy.com/ti/gratis-vektor/p1/8601980-zwei-kinder-horen-mit-kopfhorern-zusammen-musik-kostenlos-vektor.jpg" class="romantic-img" alt="Musik">
-        </div>
-    </div>
 
     <a href="index.html" class="btn">Zurück</a>
 
@@ -77,7 +70,6 @@
         function showSection(id) {
             document.getElementById("dinner").classList.add("hidden");
             document.getElementById("movie").classList.add("hidden");
-            document.getElementById("music").classList.add("hidden");
             document.getElementById(id).classList.remove("hidden");
         }
     </script>

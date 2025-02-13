@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentinstagsgeschenk für Mia ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+        }
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background: url('https://cdn-icons-png.flaticon.com/512/2076/2076261.png') no-repeat center/cover;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 50px;
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+        }
+        .packet {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: url('https://cdn-icons-png.flaticon.com/512/1046/1046857.png') no-repeat center/cover;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Für Mia ❤️</h1>
+    <p>Klicke auf die Geschenkbox für eine Überraschung!</p>
+    <div class="gift-box" onclick="openBox()"></div>
+    
+    <div id="content" class="hidden-content">
+        <h2>Wähle ein Päckchen 🎁</h2>
+        <div class="packet" onclick="showMessage('Ich liebe dich und wünsche dir eine wunderschöne Reise! ❤️')"></div>
+        <div class="packet" onclick="showMessage('Hier ist eine kleine Challenge für dich: Mach ein Foto mit dem schönsten Ort, den du auf der Reise siehst! 📸')"></div>
+        <div class="packet" onclick="showMessage('Hör dir diese Sprachnachricht an: [Hier könnte dein Audio-Link sein] 🎶')"></div>
+    </div>
+
+    <script>
+        function openBox() {
+            document.getElementById("content").style.display = "block";
+        }
+        function showMessage(message) {
+            alert(message);
+        }
+    </script>
+</body>
+</html>

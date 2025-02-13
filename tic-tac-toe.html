@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe gegen den Computer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            text-align: center;
+            vertical-align: middle;
+            border: 2px solid #333;
+            background-color: white;
+            cursor: pointer;
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .win-message {
+            display: none;
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-top: 20px;
+        }
+        .win-message img {
+            width: 80px;
+            height: 80px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe gegen den Computer</h1>
+    <div class="board" id="board">
+        <div class="cell" onclick="makeMove(0)"></div>
+        <div class="cell" onclick="makeMove(1)"></div>
+        <div class="cell" onclick="makeMove(2)"></div>
+        <div class="cell" onclick="makeMove(3)"></div>
+        <div class="cell" onclick="makeMove(4)"></div>
+        <div class="cell" onclick="makeMove(5)"></div>
+        <div class="cell" onclick="makeMove(6)"></div>
+        <div class="cell" onclick="makeMove(7)"></div>
+        <div class="cell" onclick="makeMove(8)"></div>
+    </div>
+    <p id="game-status"></p>
+    <div id="win-message" class="win-message">
+        🎉 Wow, du hast gewonnen! Aber weißt du was? Ich hab auch gewonnen – nämlich dich! Kein Tic-Tac-Toe-Sieg der Welt könnte jemals wertvoller sein als das Glück, dich an meiner Seite zu haben. 💕 Du bist einfach die Beste – und das nicht nur im Spiel! 😘<br>
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Herz">
+    </div>
+    <a href="index.html" class="back-button">Zurück</a>
+
+    <script>
+        let board = Array(9).fill(null);
+        let currentPlayer = 'X';
+        
+        function makeMove(index) {
+            if (board[index] || checkWinner()) return;
+            board[index] = currentPlayer;
+            renderBoard();
+            if (checkWinner()) {
+                document.getElementById("game-status").innerText = currentPlayer + " gewinnt!";
+                if (currentPlayer === 'X') {
+                    document.getElementById("win-message").style.display = "block";
+                }
+                return;
+            }
+            currentPlayer = 'O';
+            computerMove();
+        }
+        
+        function computerMove() {
+            let bestMove = board.findIndex(cell => cell === null);
+            if (bestMove !== -1) {
+                board[bestMove] = 'O';
+                renderBoard();
+                if (checkWinner()) {
+                    document.getElementById("game-status").innerText = "O gewinnt!";
+                }
+                currentPlayer = 'X';
+            }
+        }
+        
+        function renderBoard() {
+            document.querySelectorAll(".cell").forEach((cell, index) => {
+                cell.innerText = board[index] || "";
+            });
+        }
+        
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            return winPatterns.some(pattern => 
+                board[pattern[0]] && board[pattern[0]] === board[pattern[1]] && board[pattern[1]] === board[pattern[2]]
+            );
+        }
+    </script>
+</body>
+</html>

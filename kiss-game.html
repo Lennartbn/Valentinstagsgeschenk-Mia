@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💋 Fang meine Küsse, Mia! ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #ff4d79;
+            font-size: 28px;
+            margin-top: 20px;
+        }
+        #gameArea {
+            width: 100%;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .kiss {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            cursor: pointer;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                top: -50px;
+                opacity: 1;
+            }
+            to {
+                top: 90vh;
+                opacity: 0;
+            }
+        }
+        .message {
+            font-size: 20px;
+            color: #ff4d79;
+            margin-top: 10px;
+            transition: opacity 0.5s ease-in-out;
+        }
+        #score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff1a4d;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 20px;
+            background: #ff4d79;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💋 Fang meine Küsse, Mia! ❤️</h1>
+    <p>Klicke auf die fallenden Küsse, um Küsschen zu sammeln! 😘</p>
+    <div id="gameArea"></div>
+    <p id="score">Küsse gefangen: 0</p>
+    <p class="message" id="message"></p>
+
+    <a href="index.html">
+        <button>Zurück</button>
+    </a>
+
+    <script>
+        let score = 0;
+        const messages = [
+            "Küsschen von Lenni 💋",
+            "Noch mehr Liebe für dich! ❤️",
+            "Extra dickes Bussi 😘",
+            "Lenni liebt dich unendlich! 💖",
+            "Knutscher für meine Mia 💞",
+            "Ich will dich jetzt sofort küssen 😍",
+            "Mmmuah! 💋💋💋",
+            "Hier ist noch ein süßer Kuss! 😚"
+        ];
+
+        function createKiss() {
+            let kiss = document.createElement("img");
+            kiss.src = "kussmund.png"; // Nutzt deine hochgeladene Datei
+            kiss.classList.add("kiss");
+            kiss.style.left = Math.random() * 90 + "vw";
+            kiss.style.animationDuration = (Math.random() * 2 + 2) + "s";
+            kiss.style.top = "-50px";
+
+            // Klick-Event für die Küsse
+            kiss.addEventListener("click", function() {
+                score++;
+                document.getElementById("score").innerText = "Küsse gefangen: " + score;
+
+                let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                let messageBox = document.getElementById("message");
+                messageBox.innerText = randomMessage;
+                messageBox.style.opacity = 1;
+
+                setTimeout(() => {
+                    messageBox.style.opacity = 0;
+                }, 2000);
+
+                kiss.remove();
+            });
+
+            document.getElementById("gameArea").appendChild(kiss);
+
+            // Entfernt Küsse nach Ablauf der Animation
+            setTimeout(() => {
+                if (document.body.contains(kiss)) {
+                    kiss.remove();
+                }
+            }, 4000);
+        }
+
+        setInterval(createKiss, 1000); // Jede Sekunde erscheint ein neues Küsschen
+    </script>
+
+</body>
+</html>

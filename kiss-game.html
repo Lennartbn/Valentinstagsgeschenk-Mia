@@ -28,7 +28,7 @@
             height: 60px;
             position: absolute;
             cursor: pointer;
-            animation: fall linear infinite;
+            animation: fall 5s linear forwards; /* Längere Fallzeit */
         }
         @keyframes fall {
             from {
@@ -37,14 +37,20 @@
             }
             to {
                 top: 90vh;
-                opacity: 0;
+                opacity: 1;
             }
         }
         .message {
+            position: absolute;
             font-size: 20px;
             color: #ff4d79;
-            margin-top: 10px;
-            transition: opacity 0.5s ease-in-out;
+            font-weight: bold;
+            opacity: 1;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-in;
+        }
+        .plop {
+            transform: scale(1.5);
+            opacity: 0;
         }
         #score {
             font-size: 24px;
@@ -70,7 +76,6 @@
     <p>Klicke auf die fallenden Küsse, um Küsschen zu sammeln! 😘</p>
     <div id="gameArea"></div>
     <p id="score">Küsse gefangen: 0</p>
-    <p class="message" id="message"></p>
 
     <a href="index.html">
         <button>Zurück</button>
@@ -94,37 +99,43 @@
             kiss.src = "kussmund.png"; // Nutzt deine hochgeladene Datei
             kiss.classList.add("kiss");
             kiss.style.left = Math.random() * 90 + "vw";
-            kiss.style.animationDuration = (Math.random() * 2 + 2) + "s";
-            kiss.style.top = "-50px";
+            kiss.style.top = "-50px"; 
+            
+            document.getElementById("gameArea").appendChild(kiss);
 
             // Klick-Event für die Küsse
-            kiss.addEventListener("click", function() {
+            kiss.addEventListener("click", function(event) {
                 score++;
                 document.getElementById("score").innerText = "Küsse gefangen: " + score;
 
-                let randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                let messageBox = document.getElementById("message");
-                messageBox.innerText = randomMessage;
-                messageBox.style.opacity = 1;
+                // Erstelle eine Nachricht genau an der Klickposition
+                let message = document.createElement("div");
+                message.classList.add("message");
+                message.innerText = messages[Math.floor(Math.random() * messages.length)];
+                document.body.appendChild(message);
 
+                // Setze die Position des Textes genau dorthin, wo der Kuss getroffen wurde
+                message.style.left = event.clientX + "px";
+                message.style.top = event.clientY + "px";
+
+                // Lässt den Text aufploppen & verschwinden
                 setTimeout(() => {
-                    messageBox.style.opacity = 0;
-                }, 2000);
+                    message.classList.add("plop");
+                    setTimeout(() => message.remove(), 500);
+                }, 100);
 
                 kiss.remove();
             });
 
-            document.getElementById("gameArea").appendChild(kiss);
-
-            // Entfernt Küsse nach Ablauf der Animation
+            // Entfernt Küsse nach Ablauf der Animation, falls sie nicht geklickt wurden
             setTimeout(() => {
                 if (document.body.contains(kiss)) {
                     kiss.remove();
                 }
-            }, 4000);
+            }, 5000);
         }
 
-        setInterval(createKiss, 1000); // Jede Sekunde erscheint ein neues Küsschen
+        setInterval(createKiss, 1200); // Etwas langsamere Spawnrate für mehr Trefferchance
     </script>
 
 </body>

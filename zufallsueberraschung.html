@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Eure Zufallsüberraschung! ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffdfba;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px;
+            margin-top: 20px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎲 Eure Zufallsüberraschung! ❤️</h1>
+    <div class="container">
+        <p>Drücke den Button und erfahre, was unser nächstes Date sein wird! 😍</p>
+        <button onclick="generateSurprise()">🎲 Würfeln 🎲</button>
+        <p id="result">❔</p>
+    </div>
+
+    <a href="index.html">
+        <button>Zurück</button>
+    </a>
+
+    <script>
+        function generateSurprise() {
+            const dates = [
+                "🍷 Ein Picknick mit Wein & Snacks an einem schönen Aussichtspunkt",
+                "🎨 Ein kreativer Mal- oder Töpferkurs – und danach Kunstwerke bewundern",
+                "🌊 Nachts nackt baden in einem See (wenn's warm genug ist 😏)",
+                "🎭 Ein spontanes Mystery-Dinner oder Escape-Room für Paare",
+                "🏕️ Eine Nacht unter freiem Himmel mit Lagerfeuer & Decke",
+                "🎶 Ein privates Konzert zuhause – jeder sucht 5 Songs aus und performt sie 😂",
+                "🍣 Gemeinsam Sushi oder eine fancy neue Küche ausprobieren",
+                "🚗 Ein Roadtrip ins Ungewisse – einfach losfahren und sehen, wo wir landen",
+                "🎥 Ein Netflix & Chill Abend mit selbstgemachtem Popcorn & Deckenburg",
+                "🌆 Eine Nacht in einem richtig schönen Hotel mit Rooftop-Bar",
+                "🚀 Ein Freizeitpark-Tag mit allen Achterbahnen & Zuckerwatte",
+                "🐾 Ein Tag im Zoo oder Wildpark mit Tierfütterung",
+                "🎿 Ein Outdoor-Abenteuer – Klettern, Wandern oder sogar Snowboarden?",
+                "🍫 Eine Schokoladen- oder Weinverkostung machen",
+                "🛶 Eine Kanutour oder Tretboot-Fahrt mit Picknick auf dem Wasser",
+                "🛍️ Einen Tag lang Shopping-Challenge: Jeder kauft für den anderen ein Outfit",
+                "📸 Ein Fotowalk durch eine Stadt – coole Orte entdecken & Bilder machen",
+                "🎯 Ein Minigolf- oder Bowling-Duell mit witzigen Strafen für den Verlierer",
+                "🔍 Eine geheime Location in der Stadt erkunden (verlassene Orte?)",
+                "💃 Ein Tanzkurs für Paare – Salsa, Bachata oder Cha-Cha-Cha?",
+                "🎮 Ein Zockerabend mit Mario Kart oder einem anderen epischen Battle",
+                "🎁 Jeder kauft spontan eine Überraschung für den anderen – Budget: 10€",
+                "🏖️ Einen Tag am Meer oder See verbringen – Sonne, Wellen & Cocktails!",
+                "🎪 In ein abgefahrenes Event gehen – Zirkus, Zaubershow oder Burlesque-Show?",
+                "🛏️ Ein kompletter Lazy Sunday im Bett – Filme, Snacks & Kuscheln 😍"
+            ];
+
+            let randomIndex = Math.floor(Math.random() * dates.length);
+            document.getElementById("result").innerText = dates[randomIndex];
+        }
+    </script>
+
+</body>
+</html>

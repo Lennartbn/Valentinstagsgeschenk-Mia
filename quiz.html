@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beziehungs-Quiz ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f0e3;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .answers {
+            list-style: none;
+            padding: 0;
+        }
+        .answers li {
+            margin-bottom: 10px;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Beziehungs-Quiz ❤️</h1>
+    <div class="quiz-container">
+        <p class="question" id="question">Frage wird hier angezeigt...</p>
+        <ul class="answers" id="answers">
+            <!-- Antwortmöglichkeiten erscheinen hier -->
+        </ul>
+        <button class="button" onclick="nextQuestion()">Weiter</button>
+        <p id="result" class="hidden"></p>
+    </div>
+    <a href="index.html" class="button">Zurück</a>
+
+    <script>
+        const quizData = [
+            {
+                question: "Wann hatten wir unser erstes Date?",
+                answers: ["10. Januar", "14. Oktober", "11. Oktober", "15. September"],
+                correct: [1]
+            },
+            {
+                question: "Was ist unser Lieblingsrestaurant?",
+                answers: ["Makiman", "forum", "Namen vergessen, aber dieses eine in Düsseldorf wo man so einen fetten Teller bekommt", "Meyman"],
+                correct: [0, 1, 2, 3]
+            },
+            {
+                question: "Welche Farbe hatte mein T-Shirt bei unserem ersten Treffen?",
+                answers: ["schwarz", "blau", "weiß", "grau"],
+                correct: [0]
+            },
+            {
+                question: "Was machen wir am liebsten zusammen?",
+                answers: ["Manhunt schauen", "Kochen/Backen", "Reisen", "Kuscheln"],
+                correct: [0, 1, 2, 3]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            document.getElementById("question").innerText = quizData[currentQuestion].question;
+            const answersList = document.getElementById("answers");
+            answersList.innerHTML = "";
+            quizData[currentQuestion].answers.forEach((answer, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `<input type='checkbox' name='answer' value='${index}'> ${answer}`;
+                answersList.appendChild(li);
+            });
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelectorAll("input[name='answer']:checked");
+            if (selected.length === 0) return;
+            const selectedValues = Array.from(selected).map(input => parseInt(input.value));
+            
+            const correctAnswers = quizData[currentQuestion].correct;
+            if (selectedValues.length === correctAnswers.length && selectedValues.every(val => correctAnswers.includes(val))) {
+                score++;
+            }
+            
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                document.querySelector(".quiz-container").innerHTML = `<h2>Du hast ${score} von ${quizData.length} richtig! ❤️</h2>`;
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -48,6 +48,47 @@
             font-size: 18px;
             margin-top: 5px;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content p {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +114,28 @@
         <div class="packet-container"><div class="packet" onclick="showMessage('Eine geheime Nachricht, die du erst später öffnen darfst! 🔒')"></div><span class="packet-label">14</span></div>
     </div>
 
+    <!-- Modal -->
+    <div id="loveReasonsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>14 Gründe, warum ich dich liebe ❤️</h2>
+            <p>1. Du bringst immer ein Lächeln auf mein Gesicht. Deine Art, wie du in jedem Moment das Beste siehst, ist einfach ansteckend.</p>
+            <p>2. Deine Unterstützung bedeutet mir die Welt. Du bist immer an meiner Seite, egal wie schwierig es wird.</p>
+            <p>3. Dein Humor ist einzigartig. Mit dir wird jeder Tag schöner und die lustigsten Momente entstehen.</p>
+            <p>4. Du siehst die Welt auf eine Weise, die mich inspiriert. Deine Perspektive gibt mir immer neue Einsichten und motiviert mich.</p>
+            <p>5. Deine Liebe zu den kleinen Dingen im Leben zeigt mir, wie wertvoll jede Minute ist. Du schätzt die Momente und machst sie unvergesslich.</p>
+            <p>6. Du verstehst mich oft ohne Worte. Du spürst, was ich brauche, bevor ich es selbst weiß.</p>
+            <p>7. Dein Ehrgeiz und deine Leidenschaft für das, was du tust, sind beeindruckend. Du gehst immer mit voller Hingabe an alles, was du machst.</p>
+            <p>8. Du gibst mir das Gefühl, wertgeschätzt und geliebt zu werden. Du zeigst mir in kleinen und großen Momenten, dass ich für dich wichtig bin.</p>
+            <p>9. Du hast ein großes Herz. Deine Fürsorge für andere, besonders für mich, ist unglaublich.</p>
+            <p>10. Mit dir kann ich über alles sprechen. Du bist mein bester Freund und meine größte Unterstützung.</p>
+            <p>11. Du bringst mich dazu, mich selbst zu lieben und zu schätzen. Durch dich habe ich mich als Mensch weiterentwickelt.</p>
+            <p>12. Deine Geduld ist grenzenlos. Du gibst mir Raum, mich zu entfalten, und bist stets geduldig mit mir.</p>
+            <p>13. Dein Lächeln ist das Schönste, was ich kenne. Es hat die Fähigkeit, alles andere zu überstrahlen.</p>
+            <p>14. Du machst mein Leben bunter. Mit dir an meiner Seite fühlt sich jeder Tag wie ein Abenteuer an.</p>
+        </div>
+    </div>
+
     <script>
         function openBox() {
             document.getElementById("content").style.display = "block";
@@ -83,24 +146,4 @@
         }
 
         function showLoveReasons() {
-            const loveReasons = `
-                1. **Du bringst immer ein Lächeln auf mein Gesicht.** Deine Art, wie du in jedem Moment das Beste siehst, ist einfach ansteckend.
-                2. **Deine Unterstützung bedeutet mir die Welt.** Du bist immer an meiner Seite, egal wie schwierig es wird.
-                3. **Dein Humor ist einzigartig.** Mit dir wird jeder Tag schöner und die lustigsten Momente entstehen.
-                4. **Du siehst die Welt auf eine Weise, die mich inspiriert.** Deine Perspektive gibt mir immer neue Einsichten und motiviert mich.
-                5. **Deine Liebe zu den kleinen Dingen im Leben zeigt mir, wie wertvoll jede Minute ist.** Du schätzt die Momente und machst sie unvergesslich.
-                6. **Du verstehst mich oft ohne Worte.** Du spürst, was ich brauche, bevor ich es selbst weiß.
-                7. **Dein Ehrgeiz und deine Leidenschaft für das, was du tust, sind beeindruckend.** Du gehst immer mit voller Hingabe an alles, was du machst.
-                8. **Du gibst mir das Gefühl, wertgeschätzt und geliebt zu werden.** Du zeigst mir in kleinen und großen Momenten, dass ich für dich wichtig bin.
-                9. **Du hast ein großes Herz.** Deine Fürsorge für andere, besonders für mich, ist unglaublich.
-                10. **Mit dir kann ich über alles sprechen.** Du bist mein bester Freund und meine größte Unterstützung.
-                11. **Du bringst mich dazu, mich selbst zu lieben und zu schätzen.** Durch dich habe ich mich als Mensch weiterentwickelt.
-                12. **Deine Geduld ist grenzenlos.** Du gibst mir Raum, mich zu entfalten, und bist stets geduldig mit mir.
-                13. **Dein Lächeln ist das Schönste, was ich kenne.** Es hat die Fähigkeit, alles andere zu überstrahlen.
-                14. **Du machst mein Leben bunter.** Mit dir an meiner Seite fühlt sich jeder Tag wie ein Abenteuer an.
-            `;
-            alert(loveReasons);
-        }
-    </script>
-</body>
-</html>
+            document.getEle

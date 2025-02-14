@@ -62,7 +62,7 @@
             padding-top: 60px;
         }
 
-        .modal-content {
+           .modal-content {
             background-color: #fefefe;
             margin: 5% auto;
             padding: 20px;
@@ -70,7 +70,10 @@
             width: 80%;
             max-width: 600px;
             text-align: left;
+            max-height: 80vh; /* Maximale Höhe für Scrollbarkeit */
+            overflow-y: auto; /* Falls der Inhalt zu lang ist, erscheint eine Scrollleiste */
         }
+
 
         .close {
             color: #aaa;
